@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html ng-app="nameCalculator">
 <head>
-	<title>Name Calculator</title>
+	<title>HTML5 custom Attribute</title>
 	<script type="text/javascript" src="angular.min.js"></script>
 	<script type="text/javascript" src="app.js"></script>
 </head>
 <body>
-<h1>Name Calculator</h1>
-<div ng-controller = "nameCalculatorController">
-	<div>
-		Your name:
-		<input type="text" ng-model="name" ng-keyup = "displayNumeric();" >
-	</div>
-	<div>Total numeric value of persons name is: {{totalValue}}
-	</div>
+<h1>HTML5  custom Attribute</h1>
+<div id="target">
+	<section> Seccion 1
+		<article>Article 1</article>
+	</section>
 </div>
+<script type="text/javascript">
+	var doc = document.getElementById("target");
+</script>
 </body>
+
 </html>
