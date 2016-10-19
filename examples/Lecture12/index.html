@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app = "MsgApp">
+<head>
+	<title>Filters and Custom Filters</title>
+
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<script type="text/javascript" src="js/angular.min.js"></script>	
+	<script type="text/javascript" src="js/app.js"></script>
+	<style type="text/css">
+		body {font-size: 1.2em;}
+	</style>
+</head>
+<body>
+<h1>Filter and custom filter</h1>
+<div ng-controller="MsgController">
+	{{name}} has a message for you: <hr>
+	{{sayMessage();}}
+	<div>
+		<button ng-click="feedBlarz()">Feedback For {{name}}</button>		
+		Cost: <h2>{{cookieCost | currency:"$":3}}</h2>
+		<hr>
+		<img ng-src="images/blarz_{{stateOfBeing}}.jpeg" width="80px" height="40">
+	</div>
+</div>
+</body>
+</html>
