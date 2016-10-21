@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app = "ShoppingListApp">
+<head>
+	<title>ng-reapet Directive</title>
+
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<script type="text/javascript" src="js/angular.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<style type="text/css">
+		body {font-size: 1.2em;}
+	</style>
+</head>
+<body>
+<h1>ng-repeat Directive</h1>
+<div ng-controller="ShoppingListController">
+	<div>
+		<!-- Shopping list #1 -->
+		<!-- <h3>Shopping list:</h3>
+			<ul>
+				<li ng-repeat="item in shoppingList1">{{ item }}</li>
+			</ul>
+			<!- Shopping list #2-->
+			<!-- <h3>Shopping List #2:</h3>
+			<ul>
+				<li ng-repeat="item2 in shoppingList2">{{ item2.quantity }} of {{ item2.name }}</li>
+			</ul> -->
+
+			<h3>Shopping List #3</h3>
+			<input type="text" ng-model = "shoppingList2[0].quantity">
+			<ul>
+				<li ng-repeat="item in shoppingList2">{{ $index +1 }} Buy
+				{{ item.quantity }} of {{item.name}}</li>
+			</ul>
+			<input type="text" ng-model="newItemName" placeholder="Item name">
+			<input type="text" ng-model = "newItemQuantity" placeholder="Item price">
+			<button ng-click="addToList();">Add to List</button>
+	</div>
+</div>
+</body>
+</html>
