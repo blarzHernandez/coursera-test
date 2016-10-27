@@ -5,15 +5,18 @@ angular.module('ShoppingListDirectiveApp', [])
 .controller('ShoppingListController1', ShoppingListController1)
 .controller('ShoppingListController2', ShoppingListController2)
 .factory('ShoppingListFactory', ShoppingListFactory)
-.directive('listItemDescription',ListItemDescription)
-.directive('listItem',ListItem);
+.directive('shoppingList',ShoppingList);
 
 
-function ListItem(){
+function ShoppingList(){
   var ddo = {
-    templateUrl:'listItem.html'
+    templateUrl :'shoppingList.html',
+    scope       :{
+        list:"=myList",
+        title:'@title'
+    }
   }
-
+  console.log(ddo);
   return ddo;
 }
 
@@ -33,18 +36,23 @@ function ShoppingListController1(ShoppingListFactory) {
 
   // Use factory to create new shopping list service
   var shoppingList = ShoppingListFactory();
-
+  var origTitle = 'Shopping List #1';
+  
   list.items = shoppingList.getItems();
+  list.title = origTitle +"("+list.items.length + " items)";
+
 
   list.itemName = "";
   list.itemQuantity = "";
 
   list.addItem = function () {
     shoppingList.addItem(list.itemName, list.itemQuantity);
+    list.title = origTitle +"("+list.items.length + " items)";
   }
 
   list.removeItem = function (itemIndex) {
     shoppingList.removeItem(itemIndex);
+    list.title = origTitle +"("+list.items.length + " items)";
   };
 }
 
@@ -58,13 +66,15 @@ function ShoppingListController2(ShoppingListFactory) {
   var shoppingList = ShoppingListFactory(3);
 
   list.items = shoppingList.getItems();
-
+  var origTitle = "Shopping List #2";
+  list.title    = origTitle +"("+list.items.length + " items)";
   list.itemName = "";
   list.itemQuantity = "";
 
   list.addItem = function () {
     try {
       shoppingList.addItem(list.itemName, list.itemQuantity);
+      list.title    = origTitle +"("+list.items.length + " items)";
     } catch (error) {
       list.errorMessage = error.message;
     }
@@ -73,6 +83,7 @@ function ShoppingListController2(ShoppingListFactory) {
 
   list.removeItem = function (itemIndex) {
     shoppingList.removeItem(itemIndex);
+    list.title    = origTitle +"("+list.items.length + " items)";
   };
 }
 
