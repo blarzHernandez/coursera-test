@@ -13,7 +13,8 @@ function ShoppingListDirective(){
     templateUrl :'shoppingList.html',
     scope       :{
         items:"<",
-        title:'@'
+        title:'@',
+        badRemove: '='
     },
     //controller:'ShoppingListDirectiveController as list',
     controller:ShoppingListDirectiveController,
@@ -69,6 +70,8 @@ function ShoppingListController(ShoppingListFactory) {
   }
 
   list.removeItem = function (itemIndex) {
+    console.log("This is: ",this);
+    this.lastRemoved = "Last item removed was " + this.items[itemIndex] +"items"
     shoppingList.removeItem(itemIndex);
     list.title = origTitle +"("+list.items.length + " items)";
   };
