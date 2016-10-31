@@ -5,19 +5,45 @@
 	.controller("NarrowItDownController",NarrowItDownController)
 	.service("MenuSearchService",MenuSearchService)
 	.constant("BasePath","https://davids-restaurant.herokuapp.com/")
-	.directive("foundItems",FoundItems );
+	.directive("foundItems",FoundItemsDirective );
 
 
-	function FoundItems (){
+	function FoundItemsDirective (){
+
+		var ddo = {
+			templateUrl:"foundItemList.html",
+			/*scope:{
+				found : '<'
+			},
+			controller:FoundItemsController,
+			controllerAs:'foundList',
+			bindToController:true*/
+		}
+		return ddo;
+
+	}
+
+
+	function FoundItemsController(){
 
 	}
 
 	//Dependency inject our service
-	NarrowItDownController.$inject = ['$scope',"MenuSearchService"];
-	function NarrowItDownController ($scope,MenuSearchService){
-		var found = this;
-		found.searchMatch = function(searchT){
-				console.log(MenuSearchService.getMatchedMenuItems(searchT));
+	NarrowItDownController.$inject = ['MenuSearchService'];
+	function NarrowItDownController (MenuSearchService){
+		var objNarrow = this;
+
+
+
+
+		objNarrow.searchMatch = function(searchT){
+			var found = [];
+		 var promis = MenuSearchService.getMatchedMenuItems(searchT);
+
+			promis.then(function(result){
+			objNarrow.found = result;
+			});
+
 		}
 
 
@@ -35,7 +61,7 @@ function MenuSearchService ($http,BasePath){
 
 	//Get Matched menu items
 	service.getMatchedMenuItems = function(searchItem){
-			return $http({
+	return $http({
 				method		: 'GET',
 				url 			: (BasePath + "menu_items.json"),
 				params    :{
@@ -47,7 +73,7 @@ function MenuSearchService ($http,BasePath){
 			   for (var i = 0; i < result.data.menu_items.length; i++) {
 					    var matched = result.data.menu_items[i].description;
 
-						//	console.dir(matched.toLowerCase().indexOf('garlic'));
+						//console.dir(matched.toLowerCase().indexOf('garlic'));
 							if(matched.toLowerCase().indexOf(searchItem) !== -1){
 								foundItems.push(result.data.menu_items[i]);
 						}
@@ -56,12 +82,22 @@ function MenuSearchService ($http,BasePath){
 				 return foundItems;
 			});
 
-			//return reponse;
+
 	}//end getMatchedMenuItems
 
 
+	service.getFoundItems = function(){
+		 return foundItems;
 
-}
+	}
+
+
+	service.removeItem = function(index){
+
+	}
+
+
+}//end MenuSearchService
 
 
 
