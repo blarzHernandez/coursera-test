@@ -1,4 +1,6 @@
-<li>
-  <found-items></found-items>
-
+<ol>
+<li ng-repeat="item in foundList.found">
+  {{item.description}}
+    <button ng-click="foundList.onRemove({index: $index});">Remove Item</button>
 </li>
+</ol>

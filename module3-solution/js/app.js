@@ -12,12 +12,13 @@
 
 		var ddo = {
 			templateUrl:"foundItemList.html",
-			/*scope:{
-				found : '<'
+			scope:{
+				found : '<',
+				onRemove:'='
 			},
 			controller:FoundItemsController,
 			controllerAs:'foundList',
-			bindToController:true*/
+			bindToController:true
 		}
 		return ddo;
 
@@ -37,11 +38,15 @@
 
 
 		objNarrow.searchMatch = function(searchT){
-			var found = [];
-		 var promis = MenuSearchService.getMatchedMenuItems(searchT);
+		  var message = '';
+			if(searchT === ''){
+
+			}
+		  var promis = MenuSearchService.getMatchedMenuItems(searchT);
 
 			promis.then(function(result){
-			objNarrow.found = result;
+			
+				objNarrow.found = result;
 			});
 
 		}
