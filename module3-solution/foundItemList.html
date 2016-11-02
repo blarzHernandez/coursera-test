@@ -1,6 +1,18 @@
-<ol>
+<div><h3>Total Matches: {{foundList.found.length}} </h3></div>
+<ul>
 <li ng-repeat="item in foundList.found">
-  {{item.description}}
-    <button ng-click="foundList.onRemove({index: $index});">Remove Item</button>
+<div class="row">
+    <div class="col-sm-8" >
+
+     <b>{{item.short_name}}</b>,{{item.name}},{{item.description}}
+   
+    </div>
+    <div class="col-sm-4">
+     <button ng-click="foundList.onRemove({index: $index});">Don't want this one!</button>
+    </div>
+  </div>
+   
 </li>
-</ol>
+</ul>
+<div class="error">{{foundList.message}}</div>
+

@@ -14,7 +14,8 @@
 			templateUrl:"foundItemList.html",
 			scope:{
 				found : '<',
-				onRemove:'='
+				onRemove:'&',
+				message:'@'
 			},
 			controller:FoundItemsController,
 			controllerAs:'foundList',
@@ -26,29 +27,55 @@
 
 
 	function FoundItemsController(){
-
+		var founds = this;
+		founds.checkData = function(){
+			console.log(founds.found.length);
+			if(founds.found.length === 0){
+				return true;
+			} else{
+				return false;
+			}
+		}
 	}
 
 	//Dependency inject our service
-	NarrowItDownController.$inject = ['MenuSearchService'];
-	function NarrowItDownController (MenuSearchService){
+	NarrowItDownController.$inject = ['$scope','MenuSearchService'];
+	function NarrowItDownController ($scope,MenuSearchService){
 		var objNarrow = this;
+		objNarrow.message = '';
 
-
-
+		//objNarrow.found = MenuSearchService.getFoundItems();
 
 		objNarrow.searchMatch = function(searchT){
-		  var message = '';
-			if(searchT === ''){
+				objNarrow.found = [];
+				if(searchT === undefined || searchT === ''){
+						objNarrow.message = 'Nothing found!';						
+						
+				}else{
+					
+				    objNarrow.message = '';
+					var promis = MenuSearchService.getMatchedMenuItems(searchT);
+					
 
+					promis.then(function(result){
+						console.log(result.length);
+						if(result.length == 0){	
+							objNarrow.found = [];						
+							objNarrow.message = 'Nothing found!';
+						}else{
+							objNarrow.found = result;
+						}
+						
+				}).catch(function(error){
+					console.log(error);
+				});
 			}
-		  var promis = MenuSearchService.getMatchedMenuItems(searchT);
+		}
 
-			promis.then(function(result){
-			
-				objNarrow.found = result;
-			});
 
+		//removeItem function
+		objNarrow.removeItem = function(index){
+			objNarrow.found.splice(index,1);
 		}
 
 
@@ -62,11 +89,12 @@ MenuSearchService.$inject = ['$http','BasePath']
 	// MenuSearchService Service
 function MenuSearchService ($http,BasePath){
 	var service = this;
-	var foundItems = [];
+	
 
 	//Get Matched menu items
 	service.getMatchedMenuItems = function(searchItem){
-	return $http({
+    
+	var response = $http({
 				method		: 'GET',
 				url 			: (BasePath + "menu_items.json"),
 				params    :{
@@ -74,20 +102,20 @@ function MenuSearchService ($http,BasePath){
 				}
 			})
 			.then(function(result) {
-
-			   for (var i = 0; i < result.data.menu_items.length; i++) {
+				var foundItems = [];
+			   	for (var i = 0; i < result.data.menu_items.length; i++) {
 					    var matched = result.data.menu_items[i].description;
 
-						//console.dir(matched.toLowerCase().indexOf('garlic'));
+						//console.dir(matched.toLowerCase().indexOf(searchItem));
 							if(matched.toLowerCase().indexOf(searchItem) !== -1){
 								foundItems.push(result.data.menu_items[i]);
 						}
 			   }
-
+			  
 				 return foundItems;
 			});
 
-
+		return response;
 	}//end getMatchedMenuItems
 
 
@@ -98,7 +126,7 @@ function MenuSearchService ($http,BasePath){
 
 
 	service.removeItem = function(index){
-
+		foundItems.splice(index,1);
 	}
 
 
