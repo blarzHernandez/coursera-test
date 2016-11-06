@@ -1,5 +1,11 @@
-<ol>
-  <li ng-repeat="item in $ctrl.items">
-      {{ item.short_name }} of {{ item.name }}
-  </li>
-</ol>
+<h3 items=items.categoryName></h3>
+<table class="table table-hover">
+<thead>
+  <tr><th>Id</th><th>Short_Name</th><th>Name</th></tr>
+</thead>
+<tbody>
+  <tr ng-repeat="item in $ctrl.items">
+    <td>{{ item.id }}</td> <td>{{ item.short_name }}</td><td>{{ item.name }}</td>
+  </tr>
+</tbody>
+</table>

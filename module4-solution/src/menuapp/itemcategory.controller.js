@@ -3,12 +3,14 @@
   angular.module("MenuApp")
   .controller("ItemCategoryController",ItemCategoryController);
 
-  ItemCategoryController.$inject = ['items'];
+  ItemCategoryController.$inject = ['$stateParams','items'];
 
-  function ItemCategoryController(items){
+  function ItemCategoryController($stateParams,items){
     console.log(items);
     var itemCategory = this;
-    itemCategory.items = items['menu_items'];
+    itemCategory.items        = items['menu_items'];
+    console.log(items['category']['name']);
+    itemCategory.categoryName = items['category']['name'];
 
 
 

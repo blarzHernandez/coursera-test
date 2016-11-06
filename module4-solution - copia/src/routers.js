@@ -26,19 +26,18 @@
           }]
         }
       })
-      .state('allCategories.itemCategory',{
-      //  url:'/item-category',
+      .state('itemCategory',{
+        url:'/item-category/{itemId}',
         templateUrl:'src/menuapp/views/itemscategory.view.html',
         controller:'ItemCategoryController as itemCategory',
-        params:{
-          itemId:null
-        },
+
         resolve:{
           items:['$stateParams','MenuDataService',function($stateParams,MenuDataService){
 
             return  MenuDataService.getItemsForCategory($stateParams.itemId)
             .then(function(items){
-              return items.data;
+              console.log("Items", items);
+              return items.data['menu_items'];
             });
           }]
         }
