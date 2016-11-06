@@ -14,21 +14,33 @@
 
        var response = $http({
                       method: 'GET',
-                      url:(API_PATH + "categories.json")
-       });
+                      url:(API_PATH + 'categories.json')
+
+
+       })
+       .then(function(result){
+         return result.data;
+       })
+
+
 
        return response;
      }//end getCategories
 
      //Get item for category x
      service.getItemsForCategory = function (categoryShortName){
-       response = $htpp({
+
+       var response = $http({
                   method:'GET',
                   url:(API_PATH + "menu_items.json"),
                   params:{
-                    category: categoryShortName
+                    short_name: categoryShortName
                   }
+       })
+       .then(function(result){
+         return result.data;
        });
+       console.log(response);
        return response
      }
 

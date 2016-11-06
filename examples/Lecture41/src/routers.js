@@ -22,7 +22,7 @@
     controller : 'MainShoppingListController as mainList',
     resolve:{
       items:['ShoppingListService',function(ShoppingListService){
-        console.log(ShoppingListService.getItems());
+        //console.log(ShoppingListService.getItems());
         return ShoppingListService.getItems();
       }]
     }
