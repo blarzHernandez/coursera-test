@@ -4,7 +4,7 @@
 </thead>
 <tbody>
   <tr ng-repeat="item in $ctrl.items" class="clickable-row"
-    ui-sref="allCategories.itemCategory({ itemId:item.short_name })">
+    ui-sref="itemCategory({ itemId:item.short_name })">
     <td>{{ item.id }}</td> <td>{{ item.short_name }}</td><td>{{ item.name }}</td>
   </tr>
 </tbody>

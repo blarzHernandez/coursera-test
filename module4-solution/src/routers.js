@@ -26,8 +26,8 @@
           }]
         }
       })
-      .state('allCategories.itemCategory',{
-      //  url:'/item-category',
+      .state('itemCategory',{
+       url:'/item-category/{itemId}',
         templateUrl:'src/menuapp/views/itemscategory.view.html',
         controller:'ItemCategoryController as itemCategory',
         params:{
