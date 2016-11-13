@@ -88,11 +88,15 @@
           <div class="controls">
             <input type="text"
                     ng-model="ctrl.favoriteDish"
+                    required
                     id="favoriteDish"
                     name="favoriteDish"
-                    placeholder="Type your favorite dish"
+                    placeholder="Type your favorite dish, A1, FR1, etc."
                     class="input-xlarge">
-            <p class="help-block">short_name: L, FR, etc.</p>
+                    <span ng-if="newsletterForm.favoriteDish.$touched && newsletterForm.favoriteDish.$invalid">
+                    Type your favorite dish
+                    </span>
+            <p class="help-block">{{ ctrl.message}}</p>
           </div>
         </div>
 
@@ -100,10 +104,11 @@
           <!-- Button -->
           <div class="controls">
             <button class="btn btn-success"
-            ng-disabled = "newsletterForm.$invalid"
-            ng-click = "ctrl.submit(ctrl.favoriteDish)">Send</button>
+            ng-disabled = "newsletterForm.$invalid || ctrl.saved"
+            ng-click = "ctrl.submit()">Save</button>
           </div>
         </div>
+
       </fieldset>
     </form>
 </div>

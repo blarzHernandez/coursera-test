@@ -44,6 +44,13 @@ function routeConfig ($stateProvider) {
     .state('public.newsletter',{
       url:'/newsletter',
       templateUrl:'src/public/newsletter/newsletter-form.html'
+      /*controller:'NewsletterController',
+      controllerAs:'ctrl',
+      resolve:{
+        favorite:['$stateParams','MenuService',function($stateParams,MenuService){
+           return MenuService.getItem($stateParams.menuItem);
+        }]
+      }*/
 
     });
 }
