@@ -1,5 +1,11 @@
 
-<div class="container">
+<div class="container" >
+  <div id="noRegistered" ng-show="infoCtrl.registered">
+  <h2>  Not Sign up yet!</h3>
+    <button class="btn btn-success"
+    ui-sref = "public.newsletter">Sign Up Now!</button>
+  </div>
+  <div id="registered" ng-show="!infoCtrl.registered">
   <h2>
    Your Personal Information
   </h2>
@@ -45,5 +51,6 @@
     </div>
   </div>
   <hr class="visible-xs">
+</div>
 </div>
 </div>

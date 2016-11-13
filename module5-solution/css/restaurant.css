@@ -200,3 +200,14 @@ a[ui-sref="admin.auth"] {
   }
   /* End Header */
 }
+input{
+  color:black;
+}
+.warning{
+  color: red;
+}
+.warning2{
+  color: red;
+  font-size: 1em;
+  font-weight: bold;
+}

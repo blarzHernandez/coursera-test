@@ -7,11 +7,15 @@ angular.module('public')
 //PreferencesService.$inject = [''];
 function PreferencesService(){
   var service = this;
-  var preferences = [];
+  var preferences =[];
+  var data = {
+    dataUser:'',
+    preferences:''
+  };
   //Save preferences function
     service.savePreferences = function (dataUser,preference) {
 
-      var data = {
+       data = {
         dataUser:dataUser,
         preferences:preference
       };
