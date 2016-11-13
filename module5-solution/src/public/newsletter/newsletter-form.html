@@ -1,0 +1,96 @@
+
+<div class="container" ng-controller="NewsletterController as ctrl" >
+  <div style="color:black">
+    <h1>Newsletter Form </h1>
+    <form name="newsletterForm" novalidate
+  >
+      <fieldset>
+        <div id="legend">
+          <legend class="">Register</legend>
+        </div>
+        <div class="control-group">
+          <!-- first name -->
+          <label class="control-label"
+                  for="firstName">First Name</label>
+          <div class="controls">
+            <input  type="text"
+                    ng-model="ctrl.firstName"
+                    name="firstName"
+                    placeholder="Type your first name"
+                    class="input-xlarge"
+                    required
+                    ng-minlength ="5">
+                    <span
+                        ng-if="(newsletterForm.firstName.$error.minlength || newsletterForm.firstName.$error.required) && newsletterForm.firstName.$touched">
+                        First name must be at least 5 characters long and not empty
+                    </span>
+          </div>
+        </div>
+        <div class="control-group">
+          <!-- last name -->
+          <label class="control-label"  for="lastName">Last Name</label>
+          <div class="controls">
+            <input type="text"
+                  ng-model="ctrl.lastName"
+                  id="lastName"
+                  name="lastName"
+                  placeholder="Type your last name"
+                  class="input-xlarge"
+                  required
+                  ng-minlength="5">
+            <span
+                ng-if="(newsletterForm.lastName.$error.minlength || newsletterForm.lastName.$error.required) && newsletterForm.lastName.$touched">
+                Last name must be at least 5 characters long and not empty
+            </span>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <!-- E-mail -->
+          <label class="control-label" for="email">E-mail</label>
+          <div class="controls">
+            <input type="email"
+            id="email"
+            name="email"
+            placeholder=""
+            class="input-xlarge",
+            ng-model="ctrl.email",
+            required>
+            <span
+                ng-if="newsletterForm.email.$invalid && newsletterForm.email.$touched">
+                 Must be a valid email address
+            </span>
+
+          </div>
+        </div>
+
+        <div class="control-group">
+          <!-- phone number-->
+          <label class="control-label" for="phoneNumber">Phone Number</label>
+          <div class="controls">
+            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Type your phone number" class="input-xlarge">
+
+          </div>
+        </div>
+
+        <div class="control-group">
+          <!-- favorite menu -->
+          <label class="control-label"  for="favoriteDish">What is your favorite dish?</label>
+          <div class="controls">
+            <input type="password" id="favoriteDish" name="favoriteDish" placeholder="Type your favorite dish" class="input-xlarge">
+            <p class="help-block">short_name: L, FR, etc.</p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <!-- Button -->
+          <div class="controls">
+            <button class="btn btn-success"
+            ng-disabled = "newsletterForm.$invalid"
+            ng-click = "ctrl.submit()">Send</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+</div>
+ </div>
