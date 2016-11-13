@@ -1,0 +1,49 @@
+
+<div class="container">
+  <h2>
+   Your Personal Information
+  </h2>
+  <hr>
+  <table>
+
+      <tbody>
+        <tr>
+          <td>First Name: </td>
+          <td>{{infoCtrl.preferences[0].dataUser.firstName}}</td>
+        </tr>
+        <tr>
+          <td>Last Name: </td>
+          <td>{{infoCtrl.preferences[0].dataUser.lastName}}</td>
+        </tr>
+        <tr>
+          <td>Email: </td>
+          <td>{{infoCtrl.preferences[0].dataUser.email}}</td>
+        </tr>
+        <tr>
+          <td>Phone Number: </td>
+          <td>{{infoCtrl.preferences[0].dataUser.phoneNumber}}</td>
+        </tr>
+
+      </tbody>
+    </table>
+    <h2>
+     Your Favorite Dish
+    </h2>
+  <hr>
+<div class="menu-item-tile col-md-6">
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="menu-item-photo">
+       <div>{{infoCtrl.preferences[0].preferences.short_name}}</div>
+        <img class="img-responsive" width="250" height="150" ng-src="{{infoCtrl.basePath}}/images/{{infoCtrl.preferences[0].preferences.short_name}}.jpg" title="{{infoCtrl.preferences[0].preferences.name}}">
+      </div>
+      <div class="menu-item-price">{{infoCtrl.preferences[0].preferences.price_small | currency}}<span> {{infoCtrl.preferences[0].preferences.small_portion_name}}</span> {{infoCtrl.preferences[0].preferences.price_large | currency}} <span>{{infoCtrl.preferences[0].preferences.large_portion_name}}</span></div>
+    </div>
+    <div class="menu-item-description col-sm-7">
+      <h3 class="menu-item-title">{{infoCtrl.preferences[0].preferences.name}}</h3>
+      <p class="menu-item-details">{{infoCtrl.preferences[0].preferences.description}}</p>
+    </div>
+  </div>
+  <hr class="visible-xs">
+</div>
+</div>

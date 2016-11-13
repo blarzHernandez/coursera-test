@@ -11,10 +11,11 @@ function PreferencesService(){
   //Save preferences function
     service.savePreferences = function (dataUser,preference) {
 
-      var data = [{
+      var data = {
         dataUser:dataUser,
         preferences:preference
-      }];
+      };
+
       preferences.push(data);
     }///end savePreferences
 

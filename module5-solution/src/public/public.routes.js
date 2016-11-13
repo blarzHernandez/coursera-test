@@ -52,6 +52,17 @@ function routeConfig ($stateProvider) {
         }]
       }*/
 
+    })
+    .state('public.my-info',{
+      url:'/my-info',
+      templateUrl:'src/public/my-info/my-info.html',
+      controller:'MyInfoController',
+      controllerAs:'infoCtrl',
+      resolve:{
+        prefer : ['PreferencesService',function(PreferencesService){
+          return PreferencesService.getPreferences();
+        }]
+      }
     });
 }
 })();

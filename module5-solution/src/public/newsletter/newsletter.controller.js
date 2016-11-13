@@ -13,16 +13,17 @@ NewsletterController.$inject = ['MenuService','$filter','PreferencesService'];
    $ctrl.submit = function(){
      $ctrl.saved   = false;
      $ctrl.message    = '';
+     var favoriteD = $filter('uppercase')($ctrl.favoriteDish);
      var dataUser  = {
        firstName    : $ctrl.firstName,
        lastName     : $ctrl.lastName,
        email        :$ctrl.email,
        phoneNumber  : $ctrl.phoneNumber,
-       favoriteDish :$ctrl.favoriteDish
+       favoriteDish :favoriteD
      }
 
 
-      var promise = MenuService.getItem($filter('uppercase')($ctrl.favoriteDish));
+      var promise = MenuService.getItem(favoriteD);
         promise.then(function(response){
           PreferencesService.savePreferences(dataUser,response);
           $ctrl.preferences = PreferencesService.getPreferences();
@@ -31,7 +32,7 @@ NewsletterController.$inject = ['MenuService','$filter','PreferencesService'];
         })
         .catch(function(error){
             if(error.data.status == 500){
-              $ctrl.message = 'No such menu number exists | ' + $filter('uppercase')($ctrl.favoriteDish) ;
+              $ctrl.message = 'No such menu number exists | ' + favoriteD ;
             }
         });
 
