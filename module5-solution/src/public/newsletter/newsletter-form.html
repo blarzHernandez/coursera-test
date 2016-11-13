@@ -68,8 +68,17 @@
           <!-- phone number-->
           <label class="control-label" for="phoneNumber">Phone Number</label>
           <div class="controls">
-            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Type your phone number" class="input-xlarge">
-
+            <input type="text"
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  placeholder="Type your phone number"
+                  class="input-xlarge"
+                  ng-model="ctrl.phoneNumber"
+                  pattern="(\d{3})-(\d{3})-(\d{4})"
+                  required>
+            <span ng-if="(newsletterForm.phoneNumber.$invalid || newsletterForm.phoneNumber.$error.required)  && newsletterForm.phoneNumber.$touched">
+              Phone must be in the format as ###-###-####.
+            </span>
           </div>
         </div>
 
@@ -77,7 +86,12 @@
           <!-- favorite menu -->
           <label class="control-label"  for="favoriteDish">What is your favorite dish?</label>
           <div class="controls">
-            <input type="password" id="favoriteDish" name="favoriteDish" placeholder="Type your favorite dish" class="input-xlarge">
+            <input type="text"
+                    ng-model="ctrl.favoriteDish"
+                    id="favoriteDish"
+                    name="favoriteDish"
+                    placeholder="Type your favorite dish"
+                    class="input-xlarge">
             <p class="help-block">short_name: L, FR, etc.</p>
           </div>
         </div>
@@ -87,7 +101,7 @@
           <div class="controls">
             <button class="btn btn-success"
             ng-disabled = "newsletterForm.$invalid"
-            ng-click = "ctrl.submit()">Send</button>
+            ng-click = "ctrl.submit(ctrl.favoriteDish)">Send</button>
           </div>
         </div>
       </fieldset>

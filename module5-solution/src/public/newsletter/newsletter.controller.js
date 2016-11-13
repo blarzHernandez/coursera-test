@@ -8,9 +8,10 @@ angular.module("public")
 
  function NewsletterController(){
    var $ctrl = this;
-   console.log($ctrl);
-   $ctrl.submit = function(){
+   
+   $ctrl.submit = function(dish){
      $ctrl.validate = true;
+     console.log(dish);
    }
 
  }
