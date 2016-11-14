@@ -211,3 +211,8 @@ input{
   font-size: 1em;
   font-weight: bold;
 }
+.success{
+  color: green;
+  font-size: 1em;
+  font-weight: bold;
+}
